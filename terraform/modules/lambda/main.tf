@@ -9,6 +9,13 @@ resource "aws_lambda_function" "add_stream" {
   handler = "index.handler"
   runtime = "nodejs12.x"
 
+  environment {
+    variables = {
+      clientId = var.client_id
+      clientSecret = var.client_secret
+    }
+  }
+
   tags = var.tags
 }
 

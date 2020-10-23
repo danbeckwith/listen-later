@@ -14,6 +14,8 @@ module "listen_later_playlist_poller" {
   lambda_name = local.lambda
   tags = local.tags
   project = local.project
+  client_id = var.client_id
+  client_secret = var.client_secret
 }
 
 # module "add_stream_api" {

@@ -15,5 +15,8 @@
     "release": "aws s3api put-object --bucket listen-later-lambda-source --key listen-later-playlist-poller --body ./listen-later-playlist-poller.zip",
     "deploy": "aws lambda update-function-code --function-name listen-later-playlist-poller --s3-bucket listen-later-lambda-source --s3-key listen-later-playlist-poller",
     "build-release-deploy": "yarn run build && yarn run release && yarn run deploy"
+  },
+  "dependencies": {
+    "spotify-web-api-node": "^5.0.0"
   }
 }

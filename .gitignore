@@ -105,8 +105,10 @@ dist
 
 # Terraform
 terraform/.terraform
+terraform/terraform.tfvars.json
 
 # Local lambda invoke output
 output.json
 
 *.zip
+
