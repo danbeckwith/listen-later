@@ -1,0 +1,20 @@
+{
+  "name": "spotify-login-lambda",
+  "version": "1.0.0",
+  "description": "Logs into Spotify API",
+  "main": "index.js",
+  "author": "Daniel Beckwith",
+  "license": "MIT",
+  "devDependencies": {
+    "aws-sdk": "^2.747.0",
+    "jest": "^26.4.2"
+  },
+  "scripts": {
+    "build": "yarn install --production && zip -rq spotify-login-lambda.zip index.js lib/* node_modules",
+    "release": "aws s3api put-object --bucket listen-later-lambda-source --key spotify-login-lambda --body ./spotify-login-lambda.zip",
+    "build-release": "yarn run build && yarn run release"
+  },
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}

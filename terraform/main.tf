@@ -1,6 +1,5 @@
 locals {
   project = "listen-later"
-  lambda = "listen-later-playlist-poller"
 
   tags = {
     Owner = "Daniel Beckwith"
@@ -8,20 +7,19 @@ locals {
   }
 }
 
-module "listen_later_playlist_poller" {
+module "spotify_login_lambda" {
   source = "./modules/lambda"
 
-  lambda_name = local.lambda
+  lambda_name = "spotify-login-lambda"
   tags = local.tags
   project = local.project
   client_id = var.client_id
   client_secret = var.client_secret
 }
 
-# module "add_stream_api" {
-#   source = "./modules/api-gateway"
+module "api" {
+  source = "./modules/api-gateway"
 
-#   listen_later_lambda_invoke_arn = module.listen_later_playlist_poller.invoke_arn
-#   listen_later_function_name = module.listen_later_playlist_poller.function_name
-#   tags = local.tags
-# }
+  lambda_invoke_arn = module.spotify_login_lambda.invoke_arn
+  lambda_function_name = module.spotify_login_lambda.function_name
+}

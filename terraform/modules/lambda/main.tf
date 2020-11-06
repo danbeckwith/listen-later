@@ -1,4 +1,4 @@
-resource "aws_lambda_function" "add_stream" {
+resource "aws_lambda_function" "login" {
   function_name = var.lambda_name
 
   s3_bucket = "${var.project}-lambda-source"
@@ -11,8 +11,8 @@ resource "aws_lambda_function" "add_stream" {
 
   environment {
     variables = {
-      clientId = var.client_id
-      clientSecret = var.client_secret
+      CLIENT_ID = var.client_id
+      CLIENT_SECRET = var.client_secret
     }
   }
 
@@ -20,9 +20,9 @@ resource "aws_lambda_function" "add_stream" {
 }
 
 output "invoke_arn" {
-  value = aws_lambda_function.add_stream.invoke_arn
+  value = aws_lambda_function.login.invoke_arn
 }
 
 output "function_name" {
-  value = aws_lambda_function.add_stream.function_name
+  value = aws_lambda_function.login.function_name
 }
